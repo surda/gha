@@ -1,0 +1,13 @@
+config/local.neon
+
+/.idea
+/.git
+
+/vendor
+/bin
+
+composer.lock
+
+!.gitignore
+!.htaccess
+!web.config
