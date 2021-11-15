@@ -13,6 +13,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  extensions: "json"
+  cache-version: "1"
+  composer-version: "v1"
+  composer-install: "composer update --no-interaction --no-progress --no-suggest --prefer-dist --prefer-stable"
+  coverage: "none"
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -24,6 +31,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
